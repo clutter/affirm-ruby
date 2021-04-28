@@ -24,7 +24,6 @@ describe Affirm::Checkout do
     it "sets attributes" do
       checkout = Affirm::Checkout.retrieve(id)
 
-      checkout.id.should == id
       checkout.currency.should == "USD"
       checkout.total.should == 6100
       checkout.order_id.should == "order_id_123"
@@ -32,6 +31,12 @@ describe Affirm::Checkout do
       checkout.tax_amount.should == 700
       checkout.shipping_amount.should == 800
       checkout.metadata.should == { "mode" => "modal", "invoice_id" => "invoice_id_123"}
+    end
+
+    it "does not unset the id" do
+      checkout = Affirm::Checkout.retrieve(id)
+
+      checkout.id.should == id
     end
 
     context "not found" do

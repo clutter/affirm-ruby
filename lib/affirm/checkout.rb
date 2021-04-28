@@ -13,6 +13,7 @@ module Affirm
 
     def initialize(attrs: {}, client: Affirm::API.client)
       @client = client
+      @id = attrs['id']
       set_attrs(attrs)
     end
 
@@ -27,7 +28,6 @@ module Affirm
     private
 
     def set_attrs(attrs)
-      @id                = attrs["id"]
       @merchant          = attrs["merchant"]
       @shipping          = attrs["shipping"]
       @billing           = attrs["billing"]
